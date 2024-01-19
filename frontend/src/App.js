@@ -1,17 +1,16 @@
-// Import the CSS for the App
 import './App.css';
 
-// Define the App component
+// Define the path to the logo image
+const logoPath = `${process.env.PUBLIC_URL}/assets/images/logo.png`;
+
 function App() {
-  // The component returns the JSX to render
   return (
-    // A div with class "App" is the main container
     <div className="App">
       <header className="App-header">
-        <img src="csmi-logo.png" className="" alt="logo" />
-        <p>
-          Brevemente!
-        </p>
+        <img src={logoPath} alt="Logo" />
+        <h2>
+          Em desenvolvimento!
+        </h2>
       </header>
     </div>
   );

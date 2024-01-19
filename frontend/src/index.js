@@ -1,7 +1,6 @@
-// Import the necessary modules from the react and react-dom libraries
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// Import the main App component from the App.js file
+
 import App from './App';
 
 // Create a root DOM node using the element with the ID 'root'
