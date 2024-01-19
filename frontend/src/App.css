@@ -1,18 +1,22 @@
+/* This is the main container for the App. It centers the text within it. */
 .App {
   text-align: center;
 }
 
+/* This is the logo of the App. It has a height of 40vmin and does not respond to pointer events. */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
+/* This media query applies when the user has not expressed a preference for reduced motion. It applies an infinite spinning animation to the App logo. */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+/* This is the header of the App. It has a minimum height of 100vh and uses flexbox to center its content both vertically and horizontally. The font size is responsive, starting at 10px and increasing with the viewport size. */
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -22,10 +26,12 @@
   font-size: calc(10px + 2vmin);
 }
 
+/* This is a link within the App. It has a specific color. */
 .App-link {
   color: #61dafb;
 }
 
+/* This is a keyframes animation that rotates an element from 0 degrees to 360 degrees. */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
