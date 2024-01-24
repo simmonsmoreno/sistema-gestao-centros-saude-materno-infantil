@@ -1,3 +1,4 @@
+// Importando os módulos necessários
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
@@ -21,22 +22,30 @@ import NotificationsPopover from './common/notifications-popover';
 // ----------------------------------------------------------------------
 
 export default function Header({ onOpenNav }) {
+
+  // Obtendo o tema atual
   const theme = useTheme();
 
+  // Verificando se a largura da tela é maior ou igual a 'lg'
   const lgUp = useResponsive('up', 'lg');
 
+  // Conteúdo a ser renderizado no cabeçalho
   const renderContent = (
     <>
+      {/* Se a largura da tela for menor que 'lg', renderiza o botão para abrir a navegação */}
       {!lgUp && (
         <IconButton onClick={onOpenNav} sx={{ mr: 1 }}>
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
       )}
 
+      {/* Barra de pesquisa */}
       <Searchbar />
 
+      {/* Espaço vazio para empurrar o restante do conteúdo para a direita */}
       <Box sx={{ flexGrow: 1 }} />
 
+      {/* Popovers de notificações e conta */}
       <Stack direction="row" alignItems="center" spacing={1}>
         <NotificationsPopover />
         <AccountPopover />
@@ -44,6 +53,7 @@ export default function Header({ onOpenNav }) {
     </>
   );
 
+  // Renderização do componente
   return (
     <AppBar
       sx={{
@@ -74,6 +84,7 @@ export default function Header({ onOpenNav }) {
   );
 }
 
+// Definindo as propriedades do componente
 Header.propTypes = {
   onOpenNav: PropTypes.func,
 };
