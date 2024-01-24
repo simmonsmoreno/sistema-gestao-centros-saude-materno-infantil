@@ -25,6 +25,8 @@ import Scrollbar from 'src/components/scrollbar';
 
 // ----------------------------------------------------------------------
 
+// Array de notificações de exemplo
+// Cada objeto representa uma notificação
 const NOTIFICATIONS = [
   {
     id: faker.string.uuid(),
@@ -74,20 +76,27 @@ const NOTIFICATIONS = [
 ];
 
 export default function NotificationsPopover() {
+
+  // Estado para armazenar as notificações
   const [notifications, setNotifications] = useState(NOTIFICATIONS);
 
+  // Calcula o total de notificações não lidas
   const totalUnRead = notifications.filter((item) => item.isUnRead === true).length;
 
+  // Estado para controlar a abertura do popover
   const [open, setOpen] = useState(null);
 
+  // Função para abrir o popover
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
 
+  // Função para fechar o popover
   const handleClose = () => {
     setOpen(null);
   };
 
+  // Função para marcar todas as notificações como lidas
   const handleMarkAllAsRead = () => {
     setNotifications(
       notifications.map((notification) => ({
@@ -121,14 +130,19 @@ export default function NotificationsPopover() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', py: 2, px: 2.5 }}>
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="subtitle1">Notifications</Typography>
+            <Typography variant="subtitle1">Notificações</Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              You have {totalUnRead} unread messages
+              Tens {totalUnRead}
+              {
+                totalUnRead > 1 && ` mensagens não lidas`
+              }{
+                totalUnRead <= 1 && ' mensagem não lida'
+              }
             </Typography>
           </Box>
 
           {totalUnRead > 0 && (
-            <Tooltip title=" Mark all as read">
+            <Tooltip title=" Marcar tudo como lido">
               <IconButton color="primary" onClick={handleMarkAllAsRead}>
                 <Iconify icon="eva:done-all-fill" />
               </IconButton>
@@ -143,7 +157,7 @@ export default function NotificationsPopover() {
             disablePadding
             subheader={
               <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-                New
+                Novo
               </ListSubheader>
             }
           >
@@ -156,7 +170,7 @@ export default function NotificationsPopover() {
             disablePadding
             subheader={
               <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-                Before that
+                Mais antigas
               </ListSubheader>
             }
           >
@@ -170,7 +184,7 @@ export default function NotificationsPopover() {
 
         <Box sx={{ p: 1 }}>
           <Button fullWidth disableRipple>
-            View All
+            Ver todos
           </Button>
         </Box>
       </Popover>
@@ -180,6 +194,7 @@ export default function NotificationsPopover() {
 
 // ----------------------------------------------------------------------
 
+// Definição dos tipos de propriedades para o componente NotificationItem
 NotificationItem.propTypes = {
   notification: PropTypes.shape({
     createdAt: PropTypes.instanceOf(Date),
@@ -192,6 +207,7 @@ NotificationItem.propTypes = {
   }),
 };
 
+// Componente para renderizar um item de notificação
 function NotificationItem({ notification }) {
   const { avatar, title } = renderContent(notification);
 
@@ -232,6 +248,7 @@ function NotificationItem({ notification }) {
 
 // ----------------------------------------------------------------------
 
+// Função para renderizar o conteúdo de uma notificação com base em seu tipo
 function renderContent(notification) {
   const title = (
     <Typography variant="subtitle2">
