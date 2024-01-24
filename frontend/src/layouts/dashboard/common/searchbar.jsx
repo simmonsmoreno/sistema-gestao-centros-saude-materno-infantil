@@ -14,13 +14,17 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
+// Definindo constantes para as alturas do cabeçalho móvel e desktop
 const HEADER_MOBILE = 64;
 const HEADER_DESKTOP = 92;
 
+// Definindo um componente estilizado para a barra de pesquisa
 const StyledSearchbar = styled('div')(({ theme }) => ({
+  // Aplicando um efeito de desfoque ao fundo
   ...bgBlur({
     color: theme.palette.background.default,
   }),
+  // Definindo as propriedades CSS do componente
   top: 0,
   left: 0,
   zIndex: 99,
@@ -40,32 +44,40 @@ const StyledSearchbar = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Searchbar() {
+
+  // Estado para controlar a abertura da barra de pesquisa
   const [open, setOpen] = useState(false);
 
+  // Função para abrir/fechar a barra de pesquisa
   const handleOpen = () => {
     setOpen(!open);
   };
 
+  // Função para fechar a barra de pesquisa
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
+    // O ClickAwayListener fecha a barra de pesquisa quando o usuário clica fora dela
     <ClickAwayListener onClickAway={handleClose}>
       <div>
+        {/* O botão de pesquisa só é exibido quando a barra de pesquisa está fechada */}
         {!open && (
           <IconButton onClick={handleOpen}>
             <Iconify icon="eva:search-fill" />
           </IconButton>
         )}
 
+        {/* A barra de pesquisa é exibida com uma animação de deslizamento */}
         <Slide direction="down" in={open} mountOnEnter unmountOnExit>
           <StyledSearchbar>
+            {/* O campo de entrada da barra de pesquisa */}
             <Input
               autoFocus
               fullWidth
               disableUnderline
-              placeholder="Search…"
+              placeholder="Pesquisar…"
               startAdornment={
                 <InputAdornment position="start">
                   <Iconify
@@ -76,8 +88,9 @@ export default function Searchbar() {
               }
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
             />
+            {/* O botão para executar a pesquisa */}
             <Button variant="contained" onClick={handleClose}>
-              Search
+              Pesquisar
             </Button>
           </StyledSearchbar>
         </Slide>
