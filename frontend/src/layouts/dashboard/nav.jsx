@@ -25,10 +25,14 @@ import navConfig from './config-navigation';
 // ----------------------------------------------------------------------
 
 export default function Nav({ openNav, onCloseNav }) {
+
+  // Obtendo o caminho atual
   const pathname = usePathname();
 
+  // Verificando se a largura da tela é maior ou igual a 'lg'
   const upLg = useResponsive('up', 'lg');
 
+  // Fechando a navegação quando o caminho muda
   useEffect(() => {
     if (openNav) {
       onCloseNav();
@@ -36,6 +40,7 @@ export default function Nav({ openNav, onCloseNav }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
+  // Renderizando a conta do usuário
   const renderAccount = (
     <Box
       sx={{
@@ -61,6 +66,7 @@ export default function Nav({ openNav, onCloseNav }) {
     </Box>
   );
 
+  // Renderizando o menu de navegação
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
       {navConfig.map((item) => (
@@ -69,6 +75,7 @@ export default function Nav({ openNav, onCloseNav }) {
     </Stack>
   );
 
+  // Renderizando o conteúdo da navegação
   const renderContent = (
     <Scrollbar
       sx={{
@@ -126,6 +133,7 @@ export default function Nav({ openNav, onCloseNav }) {
   );
 }
 
+// Definindo as propriedades do componente Nav
 Nav.propTypes = {
   openNav: PropTypes.bool,
   onCloseNav: PropTypes.func,
@@ -134,8 +142,11 @@ Nav.propTypes = {
 // ----------------------------------------------------------------------
 
 function NavItem({ item }) {
+
+  // Obtendo o caminho atual
   const pathname = usePathname();
 
+  // Verificando se o item está ativo
   const active = item.path === pathname;
 
   return (
@@ -168,6 +179,7 @@ function NavItem({ item }) {
   );
 }
 
+// Definindo as propriedades do componente NavItem
 NavItem.propTypes = {
   item: PropTypes.object,
 };
