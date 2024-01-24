@@ -13,17 +13,18 @@ import { account } from 'src/_mock/account';
 
 // ----------------------------------------------------------------------
 
+// Definindo as opções do menu
 const MENU_OPTIONS = [
   {
-    label: 'Home',
+    label: 'Início',
     icon: 'eva:home-fill',
   },
   {
-    label: 'Profile',
+    label: 'Perfil',
     icon: 'eva:person-fill',
   },
   {
-    label: 'Settings',
+    label: 'Definições',
     icon: 'eva:settings-2-fill',
   },
 ];
@@ -31,12 +32,16 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+
+  // Estado para controlar a abertura do popover
   const [open, setOpen] = useState(null);
 
+  // Função para abrir o popover
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
 
+  // Função para fechar o popover
   const handleClose = () => {
     setOpen(null);
   };
@@ -74,12 +79,14 @@ export default function AccountPopover() {
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: {
-            p: 0,
-            mt: 1,
-            ml: 0.75,
-            width: 200,
+        slotProps={{
+          paper: {
+            sx: {
+              p: 0,
+              mt: 1,
+              ml: 0.75,
+              width: 200,
+            },
           },
         }}
       >
@@ -108,7 +115,7 @@ export default function AccountPopover() {
           onClick={handleClose}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >
-          Logout
+          Terminar sessão
         </MenuItem>
       </Popover>
     </>
